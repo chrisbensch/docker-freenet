@@ -7,7 +7,7 @@ LABEL maintainer="Chris Bensch"
 ARG freenet_build
 
 # Runtime argument
-ENV allowedhosts=127.0.0.1,0:0:0:0:0:0:0:1 darknetport=12345 opennetport=12346
+ENV allowedhosts=127.0.0.1,0:0:0:0:0:0:0:1,192.168.0.0/24,10.10.10.0/24 darknetport=8675 opennetport=8676
 
 # Interfaces:
 EXPOSE 8888 9481 ${darknetport}/udp ${opennetport}/udp
