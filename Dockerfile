@@ -10,7 +10,7 @@ ARG freenet_build
 ENV allowedhosts=127.0.0.1,0:0:0:0:0:0:0:1,192.168.0.0/24,10.10.10.0/24 darknetport=8675 opennetport=8676
 
 # Interfaces:
-EXPOSE 8888 9481 ${darknetport}/udp ${opennetport}/udp
+EXPOSE 8889 9481 ${darknetport}/udp ${opennetport}/udp
 
 # Command to run on start of the container
 CMD [ "/fred/docker-run" ]
