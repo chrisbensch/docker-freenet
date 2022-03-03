@@ -8,7 +8,7 @@ LABEL maintainer="Chris Bensch <chris.bensch@gmail.com>"
 ARG freenet_build
 
 # Runtime argument
-ENV allowedhosts=127.0.0.1,0:0:0:0:0:0:0:1,192.168.0.0/24,10.10.10.0/24 darknetport=8675 opennetport=8676
+ENV allowedhosts=0.0.0.0,127.0.0.1,0:0:0:0:0:0:0:1,192.168.0.0/24,10.10.10.0/24 darknetport=8675 opennetport=8676
 
 # We need openssl to download via https and libc-compat for the wrapper
 RUN apk add --update openssl libc6-compat \
