@@ -18,11 +18,15 @@ RUN apk add --update openssl libc6-compat \
     && adduser -S -u 1000 -G fred -h /fred fred \
     && chown -R fred:fred /conf /data
 
-USER fred
-WORKDIR /fred
+
 
 COPY defaults/freenet.ini /defaults/freenet.ini
+COPY defaults/freenet.ini /conf/freenet.ini
 COPY docker-run /fred/
+RUN chown fred:fred /conf/freenet.ini && chmod 777 /conf/freenet.ini
+
+USER fred
+WORKDIR /fred
 
 # Get the latest freenet build or use supplied version
 RUN build=$(test -n "${freenet_build}" && echo ${freenet_build} \
