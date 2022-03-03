@@ -50,7 +50,7 @@ RUN wget -O /tmp/new_installer.jar $(grep url /fred/buildinfo.json |cut -d" " -f
 HEALTHCHECK --interval=5m --timeout=3s CMD /fred/run.sh status || exit 1
 
 # Interfaces:
-EXPOSE 8889 9481 ${darknetport}/udp ${opennetport}/udp
+EXPOSE 8888 9481 ${darknetport}/udp ${opennetport}/udp
 
 #VOLUME ["/conf", "/data"]
 
