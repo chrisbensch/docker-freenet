@@ -4,8 +4,9 @@ services:
     container_name: freenet
     image: chrisbensch/docker-freenet
     ports:
-      - "8888:8888"
-      - "9481:9481"
+      - "127.0.0.1:8888:8888"
+      - "127.0.0.1:8889:8889"
+      - "127.0.0.1:9481:9481"
       - "8675:8675/udp"
       - "8676:8676/udp"
     #volumes:
