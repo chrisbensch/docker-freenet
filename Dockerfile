@@ -1,6 +1,7 @@
-FROM java:openjdk-8-jre-alpine
+#FROM java:openjdk-8-jre-alpine
+FROM openjdk:19-jdk-alpine3.15
 
-LABEL maintainer="Chris Bensch"
+LABEL maintainer="Chris Bensch <chris.bensch@gmail.com>"
 # Original Credit - "Tobias Vollmer <info+docker@tvollmer.de>"
 
 # Build argument (e.g. "build01478")
@@ -9,25 +10,18 @@ ARG freenet_build
 # Runtime argument
 ENV allowedhosts=127.0.0.1,0:0:0:0:0:0:0:1,192.168.0.0/24,10.10.10.0/24 darknetport=8675 opennetport=8676
 
-# Interfaces:
-EXPOSE 8889 9481 ${darknetport}/udp ${opennetport}/udp
-
-# Command to run on start of the container
-CMD [ "/fred/docker-run" ]
-
-# Check every 5 Minutes, if Freenet is still running
-HEALTHCHECK --interval=5m --timeout=3s CMD /fred/run.sh status || exit 1
-
 # We need openssl to download via https and libc-compat for the wrapper
-RUN apk add --update openssl libc6-compat && ln -s /lib /lib64
+RUN apk add --update openssl libc6-compat \
+    && ln -s /lib /lib64 \
+    && mkdir -p /conf /data \
+    && addgroup -S -g 1000 fred \
+    && adduser -S -u 1000 -G fred -h /fred fred \
+    && chown -R fred:fred /conf /data
 
-# Do not run freenet as root user:
-RUN mkdir -p /conf /data && addgroup -S -g 1000 fred && adduser -S -u 1000 -G fred -h /fred fred && chown fred: /conf /data
 USER fred
 WORKDIR /fred
-VOLUME ["/conf", "/data"]
 
-COPY ./defaults/freenet.ini /defaults/
+COPY defaults/freenet.ini /defaults/freenet.ini
 COPY docker-run /fred/
 
 # Get the latest freenet build or use supplied version
@@ -47,3 +41,14 @@ RUN wget -O /tmp/new_installer.jar $(grep url /fred/buildinfo.json |cut -d" " -f
     && echo "Build successful" \
     && echo "----------------" \
     && cat /fred/buildinfo.json
+
+# Check every 5 Minutes, if Freenet is still running
+HEALTHCHECK --interval=5m --timeout=3s CMD /fred/run.sh status || exit 1
+
+# Interfaces:
+EXPOSE 8889 9481 ${darknetport}/udp ${opennetport}/udp
+
+#VOLUME ["/conf", "/data"]
+
+# Command to run on start of the container
+CMD [ "/fred/docker-run" ]

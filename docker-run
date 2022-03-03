@@ -10,7 +10,7 @@ trapexit() {
 
 trap 'trapexit' SIGTERM
 
-if [ ! -f /conf/freenet.ini ]; then
+if [ -f /conf/freenet.ini ]; then
     cp /defaults/freenet.ini /conf/
     sed -i "s#ALLOWEDHOSTS#$allowedhosts#" /conf/freenet.ini
     sed -i "s#DARKNETPORT#$darknetport#" /conf/freenet.ini
