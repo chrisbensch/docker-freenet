@@ -13,6 +13,6 @@ services:
     #  - ./conf/freenet:/conf
     #  - ./data/freenet:/data
     environment:
-    - allowedhosts=0.0.0.0,0:0:0:0:0:0:0:1,192.168.0.0/24,10.10.10.0/24
+    - allowedhosts=0.0.0.0
     - darknetport=8675
     - opennetport=8676
