@@ -1,0 +1,14 @@
+identity=bb59t3JwhhWkhQTAvNHU~Zf8g-KV8OVfWtvX9kYIVfQ
+opennet=true
+clientNonce=LaIIpKkIZC89k3eHndG8Thzd8IOXpmi5KFXXDVdm4cs
+location=0.08963049071816975
+version=Fred,0.7,1.0,1492
+sigP256=MEQCIBZHwFbJqRcM0C2PoNnuCzmZc-6rMmh0lA1JxEkIvfr7AiAH0uDVDaQBtWJXmyxqkNwdt40YFEMEyqpXmD~Je~odNA
+lastGoodVersion=Fred,0.7,1.0,1475
+auth.negTypes=10
+ecdsa.P256.pri=MEECAQAwEwYHKoZIzj0CAQYIKoZIzj0DAQcEJzAlAgEBBCDF4R0PZ4TEE~R-bCHh1jdH3SDw40tpDnDbTJm4~ZGBqg
+ecdsa.P256.pub=MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAERyaoGCdVdHqM-PweQgQA0zOQACSW5v43TKa0S9cm8q~Cau-xCUizJt90xngpZENte0CX96jtmWGbnOxw4qS9cw
+ark.number=0
+ark.pubURI=SSK@XGcQeJSYV2uQWJWnA~auhTAEyMLGVpGUvvgCaWPHymw,OBZRy6CWxOVssyA2rRQzZp-Fm0XsX5mq5ncv3MuazEc,AQACAAE/ark
+ark.privURI=SSK@CnioUTNr8sWhs6VDAKKWq-KzGf0EA1vuGY4Wfku3sXk,OBZRy6CWxOVssyA2rRQzZp-Fm0XsX5mq5ncv3MuazEc,AQECAAE/ark
+End
