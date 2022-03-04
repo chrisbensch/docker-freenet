@@ -3,6 +3,8 @@ FROM openjdk:19-jdk-alpine3.15
 LABEL maintainer="Chris Bensch <chris.bensch@gmail.com>"
 # Original Credit - "Tobias Vollmer <info+docker@tvollmer.de>"
 
+ARG darknetport=8675 opennetport=8676
+
 # We need openssl to download via https and libc-compat for the wrapper
 RUN apk add --update openssl libc6-compat \
     && ln -s /lib /lib64 \
@@ -18,7 +20,7 @@ RUN chown fred:fred /conf/freenet.ini && chmod 777 /conf/freenet.ini
 
 USER fred
 WORKDIR /fred
-
+COPY defaults/seednodes.fref /fred/
 # Get the latest freenet build or use supplied version
 RUN build=$(test -n "${freenet_build}" && echo ${freenet_build} \
             || wget -qO - https://api.github.com/repos/freenet/fred/releases/latest | grep 'tag_name'| cut -d'"' -f 4) \

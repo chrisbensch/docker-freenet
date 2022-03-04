@@ -3,7 +3,7 @@ services:
   freenet:
     container_name: freenet
     image: chrisbensch/docker-freenet:latest
-    network_mode: "host"
+    network_mode: 'host'
     #ports:
     #  - "8888:8888"
     #  - "8889:8889"
