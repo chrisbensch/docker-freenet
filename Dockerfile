@@ -21,7 +21,8 @@ RUN chown fred:fred /conf/freenet.ini && chmod 777 /conf/freenet.ini
 USER fred
 WORKDIR /fred
 COPY defaults/seednodes.fref /fred/
-
+COPY defaults/opennet-5060 /fred/
+COPY defaults/openpeers-5060 /fred/
 
 # Get the latest freenet build or use supplied version
 RUN build=$(test -n "${freenet_build}" && echo ${freenet_build} \
