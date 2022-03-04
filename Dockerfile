@@ -41,7 +41,7 @@ RUN wget -O /tmp/new_installer.jar $(grep url /fred/buildinfo.json |cut -d" " -f
     && echo "----------------" \
     && cat /fred/buildinfo.json
 
-COPY defaults/freenet.ini /fred/
+#COPY defaults/freenet.ini /fred/
 # Check every 5 Minutes, if Freenet is still running
 HEALTHCHECK --interval=5m --timeout=3s CMD /fred/run.sh status || exit 1
 
