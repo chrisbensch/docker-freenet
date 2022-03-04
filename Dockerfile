@@ -21,6 +21,8 @@ RUN chown fred:fred /conf/freenet.ini && chmod 777 /conf/freenet.ini
 USER fred
 WORKDIR /fred
 COPY defaults/seednodes.fref /fred/
+
+
 # Get the latest freenet build or use supplied version
 RUN build=$(test -n "${freenet_build}" && echo ${freenet_build} \
             || wget -qO - https://api.github.com/repos/freenet/fred/releases/latest | grep 'tag_name'| cut -d'"' -f 4) \
@@ -39,13 +41,14 @@ RUN wget -O /tmp/new_installer.jar $(grep url /fred/buildinfo.json |cut -d" " -f
     && echo "----------------" \
     && cat /fred/buildinfo.json
 
+COPY defaults/freenet.ini /fred/
 # Check every 5 Minutes, if Freenet is still running
 HEALTHCHECK --interval=5m --timeout=3s CMD /fred/run.sh status || exit 1
 
 # Interfaces:
 EXPOSE 8888 9481 ${darknetport}/udp ${opennetport}/udp
 
-#VOLUME ["/conf", "/data"]
+VOLUME ["/conf", "/data"]
 
 # Command to run on start of the container
 CMD [ "/fred/docker-run" ]
