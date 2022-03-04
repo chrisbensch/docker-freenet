@@ -10,9 +10,9 @@ services:
     #  - "9481:9481"
     #  - "8675:8675/udp"
     #  - "8676:8676/udp"
-    volumes:
-      - ./conf/freenet:/conf
-      - ./data/freenet:/data
+    #volumes:
+    #  - ./conf/freenet:/conf
+    #  - ./data/freenet:/data
     environment:
     - darknetport=8675
     - opennetport=8676
