@@ -16,3 +16,4 @@ services:
     environment:
     - darknetport=8675
     - opennetport=8676
+    restart: always
