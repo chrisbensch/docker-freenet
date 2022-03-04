@@ -1,14 +1,7 @@
-#FROM java:openjdk-8-jre-alpine
 FROM openjdk:19-jdk-alpine3.15
 
 LABEL maintainer="Chris Bensch <chris.bensch@gmail.com>"
 # Original Credit - "Tobias Vollmer <info+docker@tvollmer.de>"
-
-# Build argument (e.g. "build01478")
-ARG freenet_build
-
-# Runtime argument
-ENV allowedhosts=0.0.0.0 darknetport=8675 opennetport=8676
 
 # We need openssl to download via https and libc-compat for the wrapper
 RUN apk add --update openssl libc6-compat \
@@ -17,8 +10,6 @@ RUN apk add --update openssl libc6-compat \
     && addgroup -S -g 1000 fred \
     && adduser -S -u 1000 -G fred -h /fred fred \
     && chown -R fred:fred /conf /data
-
-
 
 COPY defaults/freenet.ini /defaults/freenet.ini
 COPY defaults/freenet.ini /conf/freenet.ini

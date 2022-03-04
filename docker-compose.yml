@@ -2,17 +2,17 @@ version: '2'
 services:
   freenet:
     container_name: freenet
-    image: chrisbensch/docker-freenet
-    ports:
-      - "8888:8888"
-      - "8889:8889"
-      - "9481:9481"
-      - "8675:8675/udp"
-      - "8676:8676/udp"
+    image: chrisbensch/docker-freenet:latest
+    network_mode: "host"
+    #ports:
+    #  - "8888:8888"
+    #  - "8889:8889"
+    #  - "9481:9481"
+    #  - "8675:8675/udp"
+    #  - "8676:8676/udp"
     #volumes:
     #  - ./conf/freenet:/conf
     #  - ./data/freenet:/data
     environment:
-    - allowedhosts=0.0.0.0
     - darknetport=8675
     - opennetport=8676
