@@ -1,5 +1,0 @@
-#!/bin/bash
-
-echo "------ HOOK START - POST_PUSH -------"
-docker push $DOCKER_REPO
-echo "------ HOOK END - POST_PUSH -------"
