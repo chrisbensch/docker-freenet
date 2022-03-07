@@ -10,6 +10,8 @@ services:
       - "9481:9481"
       - "8675:8675/udp"
       - "8676:8676/udp"
+    cpus: 0.5
+    mem_limit: 2g
     volumes:
       - ./conf/freenet:/conf
       - ./data/freenet:/data
