@@ -15,8 +15,9 @@ RUN apk add --update openssl libc6-compat \
 
 COPY defaults/freenet.ini /defaults/freenet.ini
 COPY defaults/freenet.ini /conf/freenet.ini
+
 COPY docker-run /fred/
-RUN chown fred:fred /conf/freenet.ini && chmod 777 /conf/freenet.ini
+#RUN chown fred:fred /fred/freenet.ini && chmod 755 /fred/freenet.ini
 
 USER fred
 WORKDIR /fred
@@ -36,11 +37,13 @@ RUN build=$(test -n "${freenet_build}" && echo ${freenet_build} \
 RUN wget -O /tmp/new_installer.jar $(grep url /fred/buildinfo.json |cut -d" " -f2) \
     && echo "INSTALL_PATH=/fred/" >/tmp/install_options.conf \
     && java -jar /tmp/new_installer.jar -options /tmp/install_options.conf \
-    && sed -i 's#wrapper.app.parameter.1=freenet.ini#wrapper.app.parameter.1=/conf/freenet.ini#' /fred/wrapper.conf \
+    && sed -i 's#wrapper.app.parameter.1=freenet.ini#wrapper.app.parameter.1=/fred/freenet.ini#' /fred/wrapper.conf \
     && rm /tmp/new_installer.jar /tmp/install_options.conf \
     && echo "Build successful" \
     && echo "----------------" \
     && cat /fred/buildinfo.json
+
+COPY defaults/freenet.ini /fred/
 
 # Check every 5 Minutes, if Freenet is still running
 HEALTHCHECK --interval=5m --timeout=3s CMD /fred/run.sh status || exit 1
