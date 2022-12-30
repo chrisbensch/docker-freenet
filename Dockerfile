@@ -1,4 +1,5 @@
-FROM openjdk:19-jdk-alpine3.15
+#FROM openjdk:19-jdk-alpine3.15
+FROM amazoncorretto:19-alpine3.16
 
 LABEL maintainer="Chris Bensch <chris.bensch@gmail.com>"
 # Original Credit - "Tobias Vollmer <info+docker@tvollmer.de>"
