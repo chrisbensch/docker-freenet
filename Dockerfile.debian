@@ -1,17 +1,24 @@
-FROM openjdk:19-jdk-alpine3.15
-#FROM amazoncorretto:19-alpine3.16
+FROM debian:stable-slim
 
 LABEL maintainer="Chris Bensch <chris.bensch@gmail.com>"
 # Original Credit - "Tobias Vollmer <info+docker@tvollmer.de>"
 
 ARG darknetport=8675 opennetport=8676
 
-# We need openssl to download via https and libc-compat for the wrapper
-RUN apk add --update openssl libc6-compat \
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN mkdir -p /usr/share/man/man1 /usr/share/man/man2
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    wget \
+    openjdk-17-jre-headless \
+    openssl \
     && ln -s /lib /lib64 \
     && mkdir -p /conf /data \
-    && addgroup -S -g 1000 fred \
-    && adduser -S -u 1000 -G fred -h /fred fred \
+    #&& addgroup --system --gid 1000 fred \
+    #&& adduser --system --uid 1000 --home /fred fred \
+    &&adduser --system --group --home /fred fred \
     && chown -R fred:fred /conf /data
 
 COPY defaults/freenet.ini /defaults/freenet.ini
