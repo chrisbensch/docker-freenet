@@ -2,7 +2,7 @@ version: '2'
 services:
   freenet:
     container_name: freenet
-    image: chrisbensch/docker-freenet:debian
+    image: chrisbensch/docker-freenet:latest
     #network_mode: 'host'
     ports:
       - "8888:8888"
